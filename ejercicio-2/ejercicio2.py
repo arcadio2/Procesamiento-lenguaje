@@ -5,6 +5,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 import pandas as pd
 import csv
+import math
 
 def abrirArchivo(nombre):
     with open(nombre+".txt", encoding="UTF-8") as archivo_entrada:
@@ -33,6 +34,8 @@ def csv(X,columnas,nombre):
     df = pd.DataFrame.sparse.from_spmatrix(X, columns=columnas)
     print(df) 
     df.to_csv(nombre)
+
+
 
 if __name__=="__main__":
     corpus = abrirArchivo("corpus_generado")

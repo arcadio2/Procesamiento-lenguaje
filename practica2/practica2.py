@@ -26,6 +26,7 @@ def extraer(dataset):
     patron = re.sub("[0-9]{2,}[&]{2,}.{1,}[&]{2,}","",patron)
     #este quita los caracteres como __user__ __url__ _url_
     patron  = re.sub("[()]{0,1}[ ]{0,1}[_]{1,}[a-zA-Z]{1,}[_]{1,}[ ]{0,1}[)]{0,1}","",patron)
+    patron = re.sub("\s{2,}"," ",patron)
     #patron = re.sub("[&]{3,}","",patron)
     #res = patron.findall(dataset)
     res = re.split("\n",patron) #las separamos por salto de linea, cada noticia está una linea
@@ -84,7 +85,7 @@ if __name__=="__main__":
     dataset = abrirArchivo("corpus_noticias")
     data = extraer(dataset)
     data = data[:len(data)-1] #eliminamos el ultimo elemento que sale vacío
-    
+    generarArchivo(data,"corpus_sin_lematizar")
     #print(data[:10]) #imprime del primero al decimo
     #print(len(data)) #longitud de las noticias que son 635
     
